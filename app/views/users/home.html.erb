@@ -1,0 +1,33 @@
+<% title "Home page" %>
+
+<div class="row">
+    <div id="sidebar" class="col-md-3 col-xs-12 text-center">
+        <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail col-md-10 center-block" style="float:none"/>
+        <p>Ta Duy Anh</p>
+        <div>Learned 102 words</div>
+    </div>
+    <div id="content" class="col-md-9 col-xs-12 left-border">
+        <div class="col-md-6 col-xs-12 text-center">
+            <%= link_to 'Words', words_path, class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+        <div class="col-md-6 col-xs-12 text-center">
+            <%= link_to 'Lessions', lessions_path, class: "btn btn-danger btn-lg btn-block" %>
+        </div>
+        <div class="col-xs-12 col-md-12">
+            <h3>Activities</h3>
+            <hr></hr>
+
+            <% 10.times do %>
+            <dl class="col-md-12">
+                <dt class="col-md-2 col-xs-2"> 
+                    <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail"/>
+                </dt>
+                <dd class="col-md-10 col-xs-10">
+                     <span>Learned 20 words in Lession "Basic 500" - (2013/11/06)</span>
+                </dd>
+            </dl>
+            <% end %>
+
+        </div>
+    </div>
+</div>

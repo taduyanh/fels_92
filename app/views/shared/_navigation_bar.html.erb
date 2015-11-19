@@ -14,21 +14,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
-        <li><%= link_to t(:static_page_home), "#" %></li>
+        <li><%= link_to t(:static_page_home), root_path %></li>
         <li><%= link_to t(:static_page_word), "#" %></li>
         <li><%= link_to t(:static_page_lession), "#" %></li>
       </ul>
        <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t(:login), new_user_session_path, class: "navbar-brand" %></li>
-        <li><%= link_to t(:sign_up), new_user_registration_path, class: "navbar-brand" %></li>
-        <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><%= link_to t(:static_page_profile), "#" %></li>
-            <li><%= link_to t(:logout), destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
+        <% if current_user %>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= "Hello #{current_user.name}" %> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to t(:static_page_profile), user_path(current_user) %></li>
+              <li><%= link_to t(:logout), destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+
+        <% else %>
+          <li><%= link_to t(:login), new_user_session_path, class: "navbar-brand" %></li>
+          <li><%= link_to t(:sign_up), new_user_registration_path, class: "navbar-brand" %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

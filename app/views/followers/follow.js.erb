@@ -1,0 +1,2 @@
+$("#btn_follow_<%=@user.id%>").html('<%=j render partial: "form", locals: {user: @user} %>')
+$('#lnk_following').html('<%= t(:following_count, count: current_user.active_follows.count) %>');

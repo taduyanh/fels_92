@@ -1,0 +1,30 @@
+<% title "Follow page" %>
+
+<div class="row">
+  <h1><span class="glyphicon glyphicon-user" ></span> User List</h1>
+  <hr />
+  <div class="col-xs-12">
+    <%= link_to t(:following_count, count: current_user.active_follows.count), 
+        followers_path(type: :following), 
+        id: "lnk_following" %> &nbsp;
+    <%= link_to t(:follower_count, count: current_user.passive_follows.count), 
+        followers_path(type: :follower), 
+        id: "lnl_followers"%>  &nbsp;
+    <%= link_to t(:all_count, count: User.exclude(current_user).count), 
+        followers_path %>  &nbsp;
+  </div>
+  <div class="col-xs-12" id="user_list">
+    <% @users.each do |user| %>
+      <div class="text-center user_box" id="user_<%= user.id%>" 
+        style="margin: 40px 0 10px 0;">
+        <%= link_to image_tag(user.avatar, class: "img-thumbnail center-block", 
+            style: "float:none"), user_path(user.id) %>
+        <p><%= user.name %></p>
+        <div id="btn_follow_<%= user.id%>">
+          <%= render partial: "form", 
+              locals: {user: user} %>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>

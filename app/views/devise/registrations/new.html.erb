@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="omb_login">
+    <h3 class="omb_authTitle"><%= t('devise.registrations.sign_up_title') %></h3>
+
+
+    <div class="row omb_row-sm-offset-3">
+      <div class="col-xs-12 col-sm-6">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+          html: { class: 'omb_loginForm'}) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <%= f.email_field :email, autofocus: true, placeholder: t('devise.registrations.placeholder_email'), class: "form-control" %>
+          </div>
+          <span class="help-block"></span>
+
+          <div class="field input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: t('devise.registrations.placeholder_password') %>
+          </div>
+          <span class="help-block"></span>
+
+          <div class="field input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: t('devise.registrations.placeholder_retype_password') %>
+          </div>
+          <span class="help-block"></span>
+
+          <div class="actions text-center">
+            <%= f.submit t(:register), class: "btn btn-success" %>
+            <%= link_to t(:sign_in), new_user_session_path, class: "btn btn-info" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

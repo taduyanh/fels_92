@@ -45,8 +45,17 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Use pry for develop
+  gem 'pry'
 end
 
 # User rails_admin for CMS
   gem 'rails_admin'
 
+# Use devise for authenticate
+  gem 'devise'
+# Social authenticate
+  gem 'omniauth'
+  gem 'omniauth-facebook'
+  gem "omniauth-google-oauth2"

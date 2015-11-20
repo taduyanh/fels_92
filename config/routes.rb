@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   root 'users#home'
   get 'words' => 'words#index', as: :words
   get 'lessions' => 'categories#index', as: :lessions
+  get 'profile' => 'users#profile', as: :profile
+  get 'follow' => 'users#follow', as: :follow
+  get 'lesson/start' => 'categories#start_lesson', as: :start_lesson
+  get 'lesson/finish' => 'categories#finish_lesson', as: :finish_lesson
+  get 'lesson/result' => 'categories#lesson_result', as: :lesson_result_list
+  get 'login' => 'users#login', as: :login
+  get 'signup' => 'users#signup', as: :signup
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

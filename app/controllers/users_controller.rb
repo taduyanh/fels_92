@@ -7,4 +7,10 @@ class UsersController < ApplicationController
 
   def follow
   end
+
+  def login
+  end
+
+  def signup
+  end
 end

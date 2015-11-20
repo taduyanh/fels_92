@@ -1,0 +1,20 @@
+<% title "Lesson Result List" %>
+
+<div class="row">
+  <h3> Lesson Result List <h3>
+  <hr />
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Result</th>
+    </tr>
+    <% 20.times do |time| %>
+      <tr>
+        <td><%= time + 1 %></td>
+        <td><%= link_to "Basic 500", finish_lesson_path %></td>
+        <td> 18/20 </td>
+      </tr>
+    <% end %>
+  </table>
+</h3>

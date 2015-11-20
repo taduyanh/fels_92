@@ -1,0 +1,22 @@
+<% title "Follow page" %>
+
+<div class="row">
+  <h1><span class="glyphicon glyphicon-user" ></span> User List</h1>
+  <hr />
+  <div class="col-xs-12">
+    <a href="#">Following(9)</a> &nbsp;
+    <a href="#">Followed(8)</a> &nbsp;
+    <a href="#">All(100)</a>
+  </div>
+  <% 100.times do %>
+    <div class="col-xs-2 text-center" style="margin: 40px 0 10px 0;">
+      <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail center-block" style="float:none"/>
+      <p>Username</p>
+      <% if 1 == [1,2].sample %>
+        <a href="#" class="btn btn-primary">Follow</a>
+      <% else %>
+        <a href="#" class="btn btn-danger">Unfollow</a>
+      <% end %>
+    </div>
+  <% end %> 
+</div>

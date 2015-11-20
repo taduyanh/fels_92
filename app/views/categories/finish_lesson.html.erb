@@ -1,0 +1,21 @@
+<div class="row">
+  <h3>Basic 500 Result&nbsp;&nbsp;&nbsp; 18/20</h3>
+  <hr />
+  <table class="table">
+    <% 20.times do %>
+      <% if 1 == [1,2].sample %>
+        <tr class="success">
+          <td><span class="glyphicon glyphicon-ok"></td>
+          <td>うつくしい</td>
+          <td>Beautiful</td>
+        </tr>
+      <% else %>
+        <tr class="danger">
+          <td><span class="glyphicon glyphicon-remove"></td>
+          <td>うつくしい</td>
+          <td>Beautiful</td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

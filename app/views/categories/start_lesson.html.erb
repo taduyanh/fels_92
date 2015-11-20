@@ -1,0 +1,30 @@
+<% title "Start Lesson" %>
+
+<div class="row">
+  <h3> Basic 500 <h3>
+  <hr />
+  <div class="col-xs-12 text-center" style="margin-bottom:40px"><strong>1/20</strong></div>
+  <div class="col-md-6 col-xs-12 text-center">
+    <p style="font-size:50px">かわいい</p>
+  </div>
+  <div class="col-md-6 col-xs-12 text-center">
+    <button class="btn btn-default btn-block" style="margin-bottom:20px">
+      Nice
+    </button>
+    <button class="btn btn-default btn-block" style="margin-bottom:20px">
+      Ugly
+    </button>
+    <button class="btn btn-default btn-block" style="margin-bottom:20px">
+      Tall
+    </button>
+    <button class="btn btn-default btn-block" style="margin-bottom:20px">
+      Other
+    </button>
+  </div>
+  <div class="result-block col-xs-12 text-center">
+    <p class="bg-success">Correct!</p>
+    <p class="bg-danger">Wrong!</p>
+    <%= link_to "Next Question", start_lesson_path, class: "btn btn-success" %>
+    <%= link_to "Finish", finish_lesson_path, class: "btn btn-danger" %>
+  </div>
+</h3>

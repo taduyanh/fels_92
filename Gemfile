@@ -47,3 +47,6 @@ group :development do
   gem 'spring'
 end
 
+# User rails_admin for CMS
+  gem 'rails_admin'
+

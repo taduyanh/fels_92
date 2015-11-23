@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+  confirm: "Are you sure?"
+  register: "Register"
+  sign_in: "Sign In"
+  login: "Login"
+  sign_up: "SignUp"
+  static_page_profile: "Profile"
+  static_page_home: "Home"
+  static_page_word: "Words"
+  static_page_lession: "Lessions"
+  logout: "Logout"
+  page_title: "Framgia E-learning System"
+

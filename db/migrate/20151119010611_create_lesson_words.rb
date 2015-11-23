@@ -5,6 +5,7 @@ class CreateLessonWords < ActiveRecord::Migration
     	t.integer :word_id
     	t.boolean :correct
     	t.integer :user_id
+      t.integer :answer_id
     	t.timestamps
     end
   end

@@ -1,0 +1,24 @@
+<% @categories.each_with_index do |category, index| %>
+<div class="col-xs-12 category-block">
+  <div class="col-xs-12 col-md-6 <%= 'pull-right' if 0 == index %2 %>">
+    <h3>
+      <strong><%= category.name %></strong> 
+      <small>
+        <%= t :user_learn_status, 
+            word: current_user.words_by_category(category).count , 
+            total: category.words.count %>
+      </small>
+    </h3>
+    <p><%= category.description %></p>
+    <div class="text-center">
+        <%= form_for Lesson.new do |f| %>
+          <%= f.hidden_field :category_id, value: category.id %>
+          <%= submit_tag 'Start', class: "btn btn btn-primary btn-lg" %>
+        <% end %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 <= 'pull-right' if 0 == index %2 %>">
+    <%= image_tag category.image, class: "img-thumbnail" %>
+  </div>
+</div>
+<% end %>

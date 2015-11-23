@@ -29,7 +29,7 @@ en:
   static_page_profile: "Profile"
   static_page_home: "Home"
   static_page_word: "Words"
-  static_page_lession: "Lessions"
+  static_page_lesson: "Lessons"
   logout: "Logout"
   page_title: "Framgia E-learning System"
   following_count: "Following(%{count})"
@@ -46,4 +46,30 @@ en:
   profile: "Profile"
   password: "Password"
   result: "Result"
-
+  users:
+    index:
+      title: "Home Page"
+      activity_title: "Learned %{words} words in Lesson '%{category}' - (%{lesson_created_at})"
+      learned_words: "Learned %{words} words"
+    partial:
+      activity:
+        title: "Activities"
+    show:
+      page_title: "Profile Page"
+      profile: "Profile"
+      password: "Password"
+      follow: "Follow"
+      update_profile: "Update Profile"
+      email_label: "Email"
+      email_placeholder: "Email"
+      name_label: "Name"
+      name_placeholder: "Name"
+      submit_button: "Submit"
+      cancel_button: "Cancel"
+      change_password: "Change Password"
+      old_password: "Old Password"
+      old_password_placeholder: "Old Password"
+      new_password: "New Password"
+      new_password_placeholder: "New Password"
+      new_password_confirm: "New Password Confirmation"
+      new_password_confirm_placeholder: "New Password Confirmation"

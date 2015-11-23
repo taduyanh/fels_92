@@ -1,61 +1,37 @@
-<% title "Profile page" %>
-
+<% title t('users.show.page_title') %>
 <div class="row">
-    <div id="sidebar" class="col-md-3 col-xs-12 text-center">
-        <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail col-md-10 center-block" style="float:none"/>
-        <p><%= @user.name %></p>
-        <div>Learned 102 words</div>
-        <div class="col-md-6 col-xs-12 text-left">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#edit_profile">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
-                <%= t :profile %>
-            </button>
-        </div>
-
-        <div class="col-md-6 col-xs-12 text-right">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#change_password">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
-                <%= t :password %>
-            </button>
-        </div>
-
-        <div class="col-xs-12" style="margin-top:20px">
-            <%= link_to raw('<span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> ' + t(:result)), '#', class: "btn btn-success btn-block text-center" %>
-        </div>
-
-        <div class="col-xs-12" style="margin-top:20px">
-            <%= link_to raw('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>' + t(:follow)), followers_path, class: "btn btn-info btn-block text-center" %>
-        </div>
+  <div id="sidebar" class="col-md-3 col-xs-12 text-center">
+    <%= render partial: "profile" %>
+    <div class="col-md-6 col-xs-12 text-left">
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#edit_profile">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t('users.show.profile') %>
+      </button>
     </div>
-    <div id="content" class="col-md-9 col-xs-12 left-border">
-        <div class="col-xs-12 col-md-12">
-            <h3><%= t :activities %></h3>
-            <hr></hr>
-
-            <% 10.times do %>
-            <dl class="col-md-12">
-                <dt class="col-md-2 col-xs-2"> 
-                    <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail"/>
-                </dt>
-                <dd class="col-md-10 col-xs-10">
-                     <span>Learned 20 words in Lession "Basic 500" - (2013/11/06)</span>
-                </dd>
-            </dl>
-            <% end %>
-
-        </div>
+    <div class="col-md-6 col-xs-12 text-right">
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#change_password">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <%= t('users.show.password') %>
+      </button>
     </div>
+    <div class="col-xs-12" style="margin-top:20px">
+      <%= link_to raw('<span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> ' + t(:result)), '#', class: "btn btn-success btn-block text-center" %>
+    </div>
+
+    <div class="col-xs-12" style="margin-top:20px">
+      <%= link_to raw('<span class="glyphicon glyphicon-user" aria-hidden="true"></span>' + t(:follow)), followers_path, class: "btn btn-info btn-block text-center" %>
+    </div>
+  </div>
+  <div id="content" class="col-md-9 col-xs-12 left-border">
+    <%= render partial: "activities", locals: {activities: @activities} %>
+  </div>
 </div>
-
 
 <div id="edit_profile" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Update Profile</h4>
+          <h4 class="modal-title"><%= t('users.show.update_profile') %></h4>
       </div>
       <div class="modal-body row">
         <form>
@@ -63,74 +39,60 @@
             <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail col-md-10"/>
             <input type="file" name="avatar">
           </div>
-
           <div class="col-xs-8">
-              
             <div class="form-group">
-              <label for="exampleInputEmail1"><%= t :email %></label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              <label for="exampleInputEmail1"><%= t('users.show.email_label') %></label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.email_placeholder') %>">
             </div>
-
             <div class="form-group">
-              <label for="exampleInputEmail1"><%= t :name %></label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name">
+              <label for="exampleInputEmail1"><%= t('users.show.name_label') %></label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.name_placeholder') %>">
             </div>
-
-            
           </div>
           <div class="col-xs-12 text-center">
-
             <div class="col-xs-4 col-xs-offset-2">
               <button type="submit" class=" col-xs-3 col-xs-offset-2 btn btn-primary  btn-block">
-                <%= t :submit %>
+                <%= t('users.show.submit_button') %>
               </button>
             </div>
-
             <div class="col-xs-4">
               <button type="button" class=" col-xs-3 col-xs-offset-2 btn btn-default btn-block" data-dismiss="modal">
-                <%= t :cancel %>
+                <%= t('users.show.cancel_button') %>
               </button>
             </div>
           </div>
         </form>
-        
       </div>
     </div>
-
   </div>
 </div>
 
-
 <div id="change_password" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Change Password</h4>
+        <h4 class="modal-title"><%= t('users.show.change_password') %></h4>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleInputEmail1">Old Password</label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Old Password ">
+            <label for="exampleInputEmail1"><%= t('users.show.old_password') %></label>
+            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.old_password_placeholder') %>">
           </div>
-
           <div class="form-group">
-            <label for="exampleInputEmail1">New Password</label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="New Password">
+            <label for="exampleInputEmail1"><%= t('users.show.new_password') %></label>
+            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.new_password_placeholder') %>">
           </div>
-
           <div class="form-group">
-            <label for="exampleInputEmail1">New Password Confirmation</label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Password Confirmation">
+            <label for="exampleInputEmail1"><%= t('users.show.new_password_confirm') %></label>
+            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.new_password_confirm_placeholder') %>">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><%= t('users.show.submit_button') %></button>
+          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('users.show.cancel_button') %></button>
         </form>
       </div>
     </div>
   </div>
 </div>
-

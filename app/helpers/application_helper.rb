@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def title(page_title)
+  def title page_title
     content_for(:title) { page_title }
   end
 
@@ -18,4 +18,12 @@ module ApplicationHelper
     end
   end
 
+  def user_avatar_from_activity activity
+    lessonactivity.user.avatar.nil? ? '' : activity.user.avatar.url
+  end
+
+  def activity_title activity
+    t('users.index.activity_title', words: activity.lesson_words.correct_words.count,
+      category: activity.category.name, lesson_created_at: activity.created_at)
+  end
 end

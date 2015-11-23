@@ -1,0 +1,19 @@
+<div class="col-xs-12 col-md-12">
+  <h3><%= t('users.partial.activity.title') %></h3>
+  <hr></hr>
+<% activities.each do |activity| %>
+  <a href="#">
+    <dl class="col-md-12">
+      <dt class="col-md-2 col-xs-2">
+        <img src= '<%= user_avatar_from_activity activity %>'
+        class='img-thumbnail' alt = 'avatar'/>
+      </dt>
+      <dd class="col-md-10 col-xs-10">
+        <span>
+          <%= activity_title activity %>
+        </span>
+      </dd>
+    </dl>
+  </a>
+<% end %>
+</div>

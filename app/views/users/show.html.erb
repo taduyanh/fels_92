@@ -34,19 +34,19 @@
           <h4 class="modal-title"><%= t('users.show.update_profile') %></h4>
       </div>
       <div class="modal-body row">
-        <form>
+        <%= form_for current_user, html: { multipart: true } do |form| %>
           <div class="col-xs-4">
-            <img src="https://api.curtisbrown.co.uk/media/32858/show/square" class="img-thumbnail col-md-10"/>
-            <input type="file" name="avatar">
+            <img src="<%= current_user.avatar.url %>" class="img-thumbnail col-md-10"/>
+            <%= form.file_field :avatar %>
           </div>
           <div class="col-xs-8">
             <div class="form-group">
               <label for="exampleInputEmail1"><%= t('users.show.email_label') %></label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.email_placeholder') %>">
+              <%= form.email_field :email, class: 'form-control' %>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1"><%= t('users.show.name_label') %></label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.name_placeholder') %>">
+              <%= form.text_field :name, class: 'form-control' %>
             </div>
           </div>
           <div class="col-xs-12 text-center">
@@ -61,7 +61,7 @@
               </button>
             </div>
           </div>
-        </form>
+        <% end%>
       </div>
     </div>
   </div>
@@ -76,23 +76,26 @@
         <h4 class="modal-title"><%= t('users.show.change_password') %></h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><%= t('users.show.old_password') %></label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.old_password_placeholder') %>">
+        <%= form_for current_user, html: {multipart: true} do |form| %>
+          <div class="field">
+            <%= form.label :password %> <i><%= t('devise.registrations.password_message') %></i><br />
+            <%= form.password_field :password, autocomplete: "off" %>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><%= t('users.show.new_password') %></label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.new_password_placeholder') %>">
+          <div class="field">
+            <%= form.label :password_confirmation %><br />
+            <%= form.password_field :password_confirmation, autocomplete: "off" %>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><%= t('users.show.new_password_confirm') %></label>
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="<%= t('users.show.new_password_confirm_placeholder') %>">
+          <div class="field">
+            <%= form.label :current_password %> <i><%= t('devise.registrations.current_password_message') %></i><br />
+            <%= form.password_field :current_password, autocomplete: "off" %>
           </div>
-          <button type="submit" class="btn btn-primary"><%= t('users.show.submit_button') %></button>
-          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('users.show.cancel_button') %></button>
-        </form>
+          <div class="actions">
+            <%= form.submit t('users.show.submit_button'), class: "btn btn-primary" %>
+            <%= form.button :cancel%>
+          </div>
+        <% end %>
       </div>
+
     </div>
   </div>
 </div>

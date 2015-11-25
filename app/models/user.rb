@@ -9,15 +9,14 @@ class User < ActiveRecord::Base
   has_many :active_follows, class_name: "Follower", foreign_key: "from_id", dependent: :destroy
   has_many :following, through: :active_follows, source: :to_user
 
-  has_many :lessions
+  has_many :lessons
 
-  has_many :lessions_words
-  has_many :words, through: :lessions_words
+  has_many :lesson_words
+  has_many :words, through: :lesson_words
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :omniauthable
 
-  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
   scope :exclude, ->(user){ where.not(id: user.id) }
 
   def self.find_for_oauth auth, signed_in_resource = nil
@@ -63,7 +62,12 @@ class User < ActiveRecord::Base
   end
 
   def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
+    self.email && (0 == (self.email =~ TEMP_EMAIL_REGEX))
+  end
+
+  def activities
+    following_ids = "SELECT from_id FROM followers WHERE  to_id = :user_id"
+    Lesson.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
   end
 
   def follow other_user
@@ -82,5 +86,4 @@ class User < ActiveRecord::Base
   def followed_by? user
     self.followers.include? user
   end
-
 end

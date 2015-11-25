@@ -53,19 +53,19 @@ ActiveRecord::Schema.define(version: 20151119090826) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
-  create_table "lessions", force: :cascade do |t|
-    t.integer  "category_id"
+  create_table "lesson_words", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "word_id"
+    t.boolean  "correct"
     t.integer  "user_id"
-    t.integer  "question_length"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lessions_words", force: :cascade do |t|
-    t.integer  "lession_id"
-    t.integer  "word_id"
-    t.boolean  "is_correct"
+  create_table "lessons", force: :cascade do |t|
+    t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "question_length"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

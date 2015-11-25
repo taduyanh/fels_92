@@ -1,0 +1,3 @@
+<img src="<%= current_user.avatar %>" class="img-thumbnail col-md-10 center-block" style="float:none"/>
+<p><%= current_user.name %></p>
+<div><%= t('users.index.learned_words', words: current_user.lesson_words.correct_words.count) %></div>

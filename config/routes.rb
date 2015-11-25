@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
-  root 'users#index'
-  resources :users
+  # You can have the root of your site routed with "root"
+  root 'users#home'
 
+  resources :users
+  resources :followers, only: [:index, :create, :destroy]
 end

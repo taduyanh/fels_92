@@ -1,0 +1,4 @@
+<%= form_for current_user.active_follows.find_by(to_id: user.id),
+             html: { method: :delete }, remote: true   do |f| %>
+  <%= f.submit t(:unfollow), class: "btn btn-danger btn-unfollow" %>
+<% end %>

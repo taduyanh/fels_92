@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'training@'
   TEMP_EMAIL_REGEX = /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
 
-  has_many :followers, class_name: "Follower", foreign_key: "to_id"
-  has_many :followers_users, through: :followers, source: :from_user
+  has_many :passive_follows, class_name: "Follower", foreign_key: "to_id", dependent: :destroy
+  has_many :followers, through: :passive_follows, source: :from_user
 
-  has_many :following, class_name: "Follower", foreign_key: "from_id"
-  has_many :following_users, through: :following, source: :to_user
+  has_many :active_follows, class_name: "Follower", foreign_key: "from_id", dependent: :destroy
+  has_many :following, through: :active_follows, source: :to_user
 
   has_many :lessions
 
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :validatable, :omniauthable
 
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
+  scope :exclude, ->(user){ where.not(id: user.id) }
 
   def self.find_for_oauth auth, signed_in_resource = nil
 
@@ -64,4 +65,22 @@ class User < ActiveRecord::Base
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
+
+  def follow other_user
+    active_follows.create to_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_follows.find_by(to_id: other_user.id).destroy
+  end
+
+
+  def following? user
+    self.following.include? user
+  end
+
+  def followed_by? user
+    self.followers.include? user
+  end
+
 end

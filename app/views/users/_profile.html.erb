@@ -1,3 +1,5 @@
-<img src="<%= current_user.avatar %>" class="img-thumbnail col-md-10 center-block" style="float:none"/>
-<p><%= current_user.name %></p>
+<%= link_to user_path(current_user.id) do %>
+  <%= image_tag current_user.avatar.url(:thumb), size: "100x100" %>
+  <p><%= current_user.name %></p>
+<% end %>
 <div><%= t('users.index.learned_words', words: current_user.lesson_words.correct_words.count) %></div>

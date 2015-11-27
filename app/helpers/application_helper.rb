@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def user_avatar_from_activity activity
-    lessonactivity.user.avatar.nil? ? '' : activity.user.avatar.url
+    activity.user.avatar.nil? ? '' : activity.user.avatar.url
   end
 
   def activity_title activity

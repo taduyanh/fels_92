@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :name
     	t.string :email
     	t.string :password
-    	t.string :avatar
     	t.timestamps
       ## Database authenticatable
       t.string :email,              null: false, default: ""

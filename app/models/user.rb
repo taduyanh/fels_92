@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
   has_many :lesson_words
   has_many :words, through: :lesson_words
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
+    :url => "/system/:attachment/:id/:basename_:style.:extension",
+    :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
+    default_url: "/system/avatars/default_avatar.png"
+  validates_attachment :avatar,
+    :size => { :in => 0..10.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :omniauthable
 

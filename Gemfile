@@ -61,3 +61,6 @@ end
   gem 'omniauth'
   gem 'omniauth-facebook'
   gem "omniauth-google-oauth2"
+
+# Use Paperclip to upload avatar
+  gem 'paperclip'

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :followers, only: [:index, :create, :destroy]
+  resources :words, only: [:index]
 end

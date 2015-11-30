@@ -3,16 +3,18 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'training@'
   TEMP_EMAIL_REGEX = /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
 
-  has_many :passive_follows, class_name: "Follower", foreign_key: "to_id", dependent: :destroy
+  has_many :passive_follows, class_name: "Follower",
+           foreign_key: "to_id", dependent: :destroy
   has_many :followers, through: :passive_follows, source: :from_user
 
-  has_many :active_follows, class_name: "Follower", foreign_key: "from_id", dependent: :destroy
+  has_many :active_follows, class_name: "Follower", 
+           foreign_key: "from_id", dependent: :destroy
   has_many :following, through: :active_follows, source: :to_user
 
   has_many :lessons
 
   has_many :lesson_words
-  has_many :words, through: :lesson_words
+  has_many :words, ->{ where lesson_words:{correct: true} }, through: :lesson_words
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
     :url => "/system/:attachment/:id/:basename_:style.:extension",
@@ -93,5 +95,9 @@ class User < ActiveRecord::Base
 
   def followed_by? user
     self.followers.include? user
+  end
+
+  def words_by_category category
+    words.by_category(category.id)
   end
 end

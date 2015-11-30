@@ -1,0 +1,22 @@
+<div class="row">
+  <h3><%= @lesson.category.name %>
+      &nbsp;&nbsp;&nbsp; 
+      <%= @lesson_words.correct_words.count %> /
+      <%= @lesson.question_length %>
+  </h3>
+  <hr />
+  <table class="table">
+    <% @lesson_words.each do |lesson_word| %>
+      <% if lesson_word.correct? %>
+        <tr class="success">
+          <td><span class="glyphicon glyphicon-ok"></td>
+      <% else %>
+        <tr class="danger">
+          <td><span class="glyphicon glyphicon-remove"></td>
+      <% end %>
+          <td><%=lesson_word.word.text_ja %></td>
+          <td><%=lesson_word.answer.text if lesson_word.answer %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>

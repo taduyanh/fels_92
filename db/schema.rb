@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125060312) do
+ActiveRecord::Schema.define(version: 20151124081421) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20151125060312) do
     t.integer  "word_id"
     t.boolean  "correct"
     t.integer  "user_id"
+    t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20151125060312) do
     t.integer  "question_length"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "finished",        default: false
   end
 
   create_table "users", force: :cascade do |t|
